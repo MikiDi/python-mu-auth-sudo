@@ -13,7 +13,8 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     python_requires=">=3.6",
     install_requires=[
-        "SPARQLWrapper"
+        "SPARQLWrapper",
+        "flask"
     ],
     url="https://github.com/MikiDi/python-mu-auth-sudo",
     packages=setuptools.find_packages(),

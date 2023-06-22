@@ -1,7 +1,7 @@
 import os
 import logging
 import typing
-from collections.abc import Mapping
+from typing import Mapping # for python >= 3.9 from collections.abc
 
 from SPARQLWrapper import SPARQLWrapper, JSON
 from flask import request

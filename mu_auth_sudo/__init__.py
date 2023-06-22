@@ -17,8 +17,10 @@ MU_HEADERS = [
 ]
 
 def sudo_sparql_client(query_type: str,
-                       sparql_endpoint: str = None, extra_headers: Mapping[str, str] = None):
-                       sparql_client = SPARQLWrapper(sparql_endpoint, returnFormat=JSON)
+                       sparql_endpoint: str = None,
+                       extra_headers: Mapping[str, str] = None):
+    sparql_client = SPARQLWrapper(sparql_endpoint, returnFormat=JSON)
+
     if query_type == "update":
         sparql_client.method = "POST"
 

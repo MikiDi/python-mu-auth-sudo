@@ -4,7 +4,7 @@ import typing
 from typing import Mapping # for python >= 3.9 from collections.abc
 
 from SPARQLWrapper import SPARQLWrapper, JSON
-from flask import request
+from flask import request, has_request_context
 
 # https://github.com/mu-semtech/mu-python-template/blob/9ed7afd4e6269567f732cc998632b8575c05b417/helpers.py#L23
 logger = logging.getLogger('MU_PYTHON_TEMPLATE_LOGGER')
@@ -25,9 +25,10 @@ def sudo_sparql_client(query_type: str,
         sparql_client.method = "POST"
 
     # Usual mu headers
-    for header in MU_HEADERS:
-        if header in request.headers:
-            sparql_client.addCustomHttpHeader(header, request.headers[header])
+    if has_request_context():
+        for header in MU_HEADERS:
+            if header in request.headers:
+                sparql_client.addCustomHttpHeader(header, request.headers[header])
 
     # sudo header
     sparql_client.addCustomHttpHeader("mu-auth-sudo", "true")
